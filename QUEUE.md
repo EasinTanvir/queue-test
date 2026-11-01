@@ -23,12 +23,18 @@ and delete the example items.
   A number is given once and never reused, because commit messages cite it; a task split into
   parts takes decimals, `Build 2.1`.
 
-## ▶ NEXT SESSION — START HERE (written 2026-11-01 00:00)
+## ▶ NEXT SESSION — START HERE (written 2026-11-01 12:00)
 
-<!-- One handoff block, rewritten by /queue:end each session:
-     One thing: the single most useful next action.
-     Blocked on: what is waiting on a person, if anything.
-     Next actions: 2-4 concrete steps. -->
+**The one thing:** Build Session 1 — the todo store (Build 1), then the CLI (Build 2).
+**Why:** Spec session turned the Inbox item into two serial rows; the repo is otherwise empty.
+**Blocked on:** nothing.
+
+**Actions:**
+1. Take `QUEUE.md` `## Build` `[HEAD]`; its Files, Guardrails and Done when are the build.
+
+**Runs unattended through:** all of Session 1. No row needs a person.
+
+**Recommended model:** Sonnet — small stdlib code, decisions already made.
 
 ## Settled
 
