@@ -55,15 +55,6 @@ and delete the example items.
   - **Done when:** <observable gate>
 -->
 
-**Session 1 — packed by file: `todos.py`, `test_todos.py`, `README.md`** (Build 2 reads what Build 1 writes, so serial, no wave)
-
-- [HEAD] Build 2 — CLI over the store: `python todos.py add "text"` and `python todos.py list`.
-  - **Files:** `todos.py`, `test_todos.py`, `README.md`
-  - **Guardrails:** `argparse` subcommands only. Store path is `todos.json` in the current directory, overridable with `--file`. `list` prints `<id>. [ ] <text>` per line, and `No todos.` when empty. Empty text exits non-zero with the error on stderr. README gets a short usage block.
-  - **Done when:** In a temp dir, `add "a"`, `add "b"`, `list` prints `1. [ ] a` then `2. [ ] b`; `python -m unittest test_todos` passes.
-
-Burn-down: 1 session to done, carrying Build 1 and Build 2. Nothing blocked.
-
 ## Spec
 
 <!-- - [ ] Spec 1 — <a decision that has to be made before something can be built> -->

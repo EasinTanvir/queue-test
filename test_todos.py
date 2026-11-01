@@ -1,8 +1,10 @@
+import contextlib
+import io
 import os
 import tempfile
 import unittest
 
-from todos import add_todo, list_todos
+from todos import add_todo, list_todos, main
 
 
 class StoreTests(unittest.TestCase):
@@ -31,6 +33,35 @@ class StoreTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 add_todo(self.path, bad)
         self.assertEqual(list_todos(self.path), [])
+
+
+class CliTests(unittest.TestCase):
+    def setUp(self):
+        self.dir = tempfile.TemporaryDirectory()
+        self.path = os.path.join(self.dir.name, "todos.json")
+
+    def tearDown(self):
+        self.dir.cleanup()
+
+    def run_cli(self, *args):
+        out, err = io.StringIO(), io.StringIO()
+        with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+            code = main(["--file", self.path, *args])
+        return code, out.getvalue(), err.getvalue()
+
+    def test_list_empty(self):
+        self.assertEqual(self.run_cli("list"), (0, "No todos.\n", ""))
+
+    def test_add_then_list(self):
+        self.run_cli("add", "a")
+        self.run_cli("add", "b")
+        self.assertEqual(self.run_cli("list"), (0, "1. [ ] a\n2. [ ] b\n", ""))
+
+    def test_add_empty_fails(self):
+        code, out, err = self.run_cli("add", "  ")
+        self.assertEqual(code, 1)
+        self.assertEqual(out, "")
+        self.assertIn("error:", err)
 
 
 if __name__ == "__main__":
