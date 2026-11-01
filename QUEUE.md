@@ -25,16 +25,16 @@ and delete the example items.
 
 ## ▶ NEXT SESSION — START HERE (written 2026-11-01 12:00)
 
-**The one thing:** Build Session 1 — the todo store (Build 1), then the CLI (Build 2).
-**Why:** Spec session turned the Inbox item into two serial rows; the repo is otherwise empty.
+**The one thing:** Run `/queue:spec` to turn the Inbox item (todo app phase 2) into Build rows.
+**Why:** Phase 1 shipped (Build 1, Build 2; 7 tests pass); `## Build` is empty.
 **Blocked on:** nothing.
 
 **Actions:**
-1. Take `QUEUE.md` `## Build` `[HEAD]`; its Files, Guardrails and Done when are the build.
+1. Inbox holds 1 item — the next free session runs `/queue:spec` to turn it into rows and pack them before claiming a build group.
 
-**Runs unattended through:** all of Session 1. No row needs a person.
+**Runs unattended through:** the spec pass. No row needs a person.
 
-**Recommended model:** Sonnet — small stdlib code, decisions already made.
+**Recommended model:** Sonnet — small scope, decisions already made.
 
 ## Settled
 
@@ -45,6 +45,7 @@ and delete the example items.
 
 <!-- Untagged captures land here. Any session adds lines; /queue:spec moves each one to a lane,
      does it, or drops it, and leaves this section empty. -->
+- (2026-11-01) Todo app phase 2: mark a todo done and delete a todo — `todos.py` already stores `done`, so this unblocks a usable app.
 
 ## Build
 
