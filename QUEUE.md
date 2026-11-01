@@ -57,11 +57,7 @@ and delete the example items.
 
 **Session 1 — packed by file: `todos.py`, `test_todos.py`, `README.md`** (Build 2 reads what Build 1 writes, so serial, no wave)
 
-- [HEAD] Build 1 — Todo store: `add_todo(path, text)` and `list_todos(path)` over a JSON file.
-  - **Files:** `todos.py`, `test_todos.py`
-  - **Guardrails:** Python 3 stdlib only, no dependencies. Todo is `{"id": int, "text": str, "done": false}`; `id` = max existing id + 1 (1 when empty). Missing file means empty list. Reject empty or whitespace-only text with `ValueError`. Write the file whole, UTF-8. Phase 1 only: no done, delete or edit.
-  - **Done when:** `python -m unittest test_todos` passes. Tests cover add, list, id increment, missing file, empty text.
-- Build 2 — CLI over the store: `python todos.py add "text"` and `python todos.py list`.
+- [HEAD] Build 2 — CLI over the store: `python todos.py add "text"` and `python todos.py list`.
   - **Files:** `todos.py`, `test_todos.py`, `README.md`
   - **Guardrails:** `argparse` subcommands only. Store path is `todos.json` in the current directory, overridable with `--file`. `list` prints `<id>. [ ] <text>` per line, and `No todos.` when empty. Empty text exits non-zero with the error on stderr. README gets a short usage block.
   - **Done when:** In a temp dir, `add "a"`, `add "b"`, `list` prints `1. [ ] a` then `2. [ ] b`; `python -m unittest test_todos` passes.
