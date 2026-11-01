@@ -25,16 +25,16 @@ and delete the example items.
 
 ## ▶ NEXT SESSION — START HERE (written 2026-11-01 12:00)
 
-**The one thing:** Build Session 1 — the todo store (Build 1), then the CLI (Build 2).
-**Why:** Spec session turned the Inbox item into two serial rows; the repo is otherwise empty.
+**The one thing:** Run `/queue:spec` to turn the Inbox item (todo app phase 2) into Build rows.
+**Why:** Phase 1 shipped (Build 1, Build 2; 7 tests pass); `## Build` is empty.
 **Blocked on:** nothing.
 
 **Actions:**
-1. Take `QUEUE.md` `## Build` `[HEAD]`; its Files, Guardrails and Done when are the build.
+1. Inbox holds 1 item — the next free session runs `/queue:spec` to turn it into rows and pack them before claiming a build group.
 
-**Runs unattended through:** all of Session 1. No row needs a person.
+**Runs unattended through:** the spec pass. No row needs a person.
 
-**Recommended model:** Sonnet — small stdlib code, decisions already made.
+**Recommended model:** Sonnet — small scope, decisions already made.
 
 ## Settled
 
@@ -45,6 +45,7 @@ and delete the example items.
 
 <!-- Untagged captures land here. Any session adds lines; /queue:spec moves each one to a lane,
      does it, or drops it, and leaves this section empty. -->
+- (2026-11-01) Todo app phase 2: mark a todo done and delete a todo — `todos.py` already stores `done`, so this unblocks a usable app.
 
 ## Build
 
@@ -54,19 +55,6 @@ and delete the example items.
   - **Guardrails:** <condition to hold>
   - **Done when:** <observable gate>
 -->
-
-**Session 1 — packed by file: `todos.py`, `test_todos.py`, `README.md`** (Build 2 reads what Build 1 writes, so serial, no wave)
-
-- [HEAD] Build 1 — Todo store: `add_todo(path, text)` and `list_todos(path)` over a JSON file.
-  - **Files:** `todos.py`, `test_todos.py`
-  - **Guardrails:** Python 3 stdlib only, no dependencies. Todo is `{"id": int, "text": str, "done": false}`; `id` = max existing id + 1 (1 when empty). Missing file means empty list. Reject empty or whitespace-only text with `ValueError`. Write the file whole, UTF-8. Phase 1 only: no done, delete or edit.
-  - **Done when:** `python -m unittest test_todos` passes. Tests cover add, list, id increment, missing file, empty text.
-- Build 2 — CLI over the store: `python todos.py add "text"` and `python todos.py list`.
-  - **Files:** `todos.py`, `test_todos.py`, `README.md`
-  - **Guardrails:** `argparse` subcommands only. Store path is `todos.json` in the current directory, overridable with `--file`. `list` prints `<id>. [ ] <text>` per line, and `No todos.` when empty. Empty text exits non-zero with the error on stderr. README gets a short usage block.
-  - **Done when:** In a temp dir, `add "a"`, `add "b"`, `list` prints `1. [ ] a` then `2. [ ] b`; `python -m unittest test_todos` passes.
-
-Burn-down: 1 session to done, carrying Build 1 and Build 2. Nothing blocked.
 
 ## Spec
 
